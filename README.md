@@ -11,11 +11,16 @@ Include this plugin after including svg.js in your html document.
 
 ```javascript
 var draw = SVG('paper'),
-    path = draw.path('M10,20L30,40'),
     delay = 100,
     speed = 1000;
 
-path.brushStroke(delay,speed);
+draw.path('M50,50 C75,80 125,20 150,50')
+    .attr({
+        fill: 'none',
+        stroke: '#000',
+        'stroke-width': 2,
+    })
+    .brushStroke(delay,speed);
 ```
 
 ## Using with Svg.import.js
