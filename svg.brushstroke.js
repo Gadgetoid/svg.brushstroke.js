@@ -1,5 +1,5 @@
 SVG.extend(SVG.Shape, {
-    lineFill: function(delay,speed){
+    brushStroke: function(delay,speed){
         function getLength( obj ){
             switch( obj.type ){
                 case 'path':
