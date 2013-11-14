@@ -5,8 +5,8 @@ SVG.extend(SVG.Shape, {
                 case 'path':
                     return obj.node.getTotalLength();
                 case 'polygon':
+                    // TODO: SVG.js seems to have a bug that loses polygon points when animating
                     var pl = draw.path('M'+obj.attr('points')+'z').hide();
-                    console.log(pl.node.getTotalLength());
                     return pl.node.getTotalLength();
                 case 'line':
                     var x = obj.node.x2.baseVal.value
