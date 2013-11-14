@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Svg.brushstroke.js by Gadgetoid</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Svg.brushstroke.js</h1>
+        <h2>Animate line drawing of SVG paths.</h2>
+        <a href="https://github.com/Gadgetoid/svg.brushstroke.js" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="svgbrushstrokejs" class="anchor" href="#svgbrushstrokejs"><span class="octicon octicon-link"></span></a>svg.brushstroke.js</h1>
+
+<p>This is a plugin for the <a href="http://svgjs.com">svg.js</a> library to animate line drawing.</p>
+
+<p>Svg.brushstroke.js is licensed under the terms of the MIT License.</p>
+
+<p>Find a demo here: <a href="http://jsfiddle.net/gadgetoid/Gh66f/">http://jsfiddle.net/gadgetoid/Gh66f/</a></p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Include this plugin after including svg.js in your html document.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">draw</span> <span class="o">=</span> <span class="nx">SVG</span><span class="p">(</span><span class="s1">'paper'</span><span class="p">),</span>
+    <span class="nx">delay</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="nx">speed</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+
+<span class="nx">draw</span><span class="p">.</span><span class="nx">path</span><span class="p">(</span><span class="s1">'M50,50 C75,80 125,20 150,50'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">({</span>
+        <span class="nx">fill</span><span class="o">:</span> <span class="s1">'none'</span><span class="p">,</span>
+        <span class="nx">stroke</span><span class="o">:</span> <span class="s1">'#000'</span><span class="p">,</span>
+        <span class="s1">'stroke-width'</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">brushStroke</span><span class="p">(</span><span class="nx">delay</span><span class="p">,</span><span class="nx">speed</span><span class="p">);</span>
+</pre></div>
+
+<h2>
+<a name="using-with-svgimportjs" class="anchor" href="#using-with-svgimportjs"><span class="octicon octicon-link"></span></a>Using with Svg.import.js</h2>
+
+<p>Use the block functionality in <a href="https://github.com/wout/svg.import.js">Svg.import.js</a> to draw SVG as it is loaded.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nx">draw</span><span class="p">.</span><span class="nx">svg</span><span class="p">(</span><span class="nx">rawSvg</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Ignore groups</span>
+  <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">type</span><span class="o">==</span><span class="s1">'g'</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+  <span class="kd">var</span> <span class="nx">delay</span> <span class="o">=</span> <span class="mi">50</span><span class="o">*</span><span class="nx">id</span><span class="p">;</span>
+
+  <span class="k">this</span><span class="p">.</span><span class="nx">attr</span><span class="p">({</span>
+      <span class="nx">fill</span><span class="o">:</span> <span class="s1">'none'</span><span class="p">,</span>
+      <span class="nx">stroke</span><span class="o">:</span> <span class="s1">'#444'</span><span class="p">,</span>
+      <span class="s1">'stroke-width'</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="p">});</span>
+
+  <span class="k">this</span><span class="p">.</span><span class="nx">lineFill</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">lineFill</span><span class="p">(</span><span class="nx">delay</span><span class="p">);</span>
+
+  <span class="nx">id</span><span class="o">++</span>
+<span class="p">})</span>
+</pre></div>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/Gadgetoid/svg.brushstroke.js/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/Gadgetoid/svg.brushstroke.js/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/Gadgetoid/svg.brushstroke.js"></a> is maintained by <a href="https://github.com/Gadgetoid">Gadgetoid</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
