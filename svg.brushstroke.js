@@ -1,4 +1,4 @@
-// svg.brushstroke.js 0.11 - Copyright (c) 2013 Philip Howard - Licensed under the MIT license
+// svg.brushstroke.js 0.2 - Copyright (c) 2013 Philip Howard - Licensed under the MIT license
 SVG.extend(SVG.Shape, {
     brushStroke: function(delay,speed){
         function getLength( obj ){
