@@ -43,7 +43,7 @@ draw.svg(rawSvg, function() {
       'stroke-width': 1,
   });
   
-  this.lineFill && this.lineFill(delay);
+  this.brushStroke && this.brushStroke(delay);
 
   id++
 })
