@@ -5,6 +5,8 @@ This is a plugin for the [svg.js](http://svgjs.com) library to animate line draw
 
 Svg.brushstroke.js is licensed under the terms of the MIT License.
 
+Find a demo here: [http://jsfiddle.net/gadgetoid/Gh66f/](http://jsfiddle.net/gadgetoid/Gh66f/)
+
 ## Usage
 
 Include this plugin after including svg.js in your html document.
