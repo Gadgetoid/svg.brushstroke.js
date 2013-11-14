@@ -31,12 +31,29 @@ SVG.extend(SVG.Shape, {
         var obj=this,len = getLength(obj);
         if(len==-1) return;
         if(typeof speed === 'undefined') speed = len;
-        obj.attr({
-            'stroke-dasharray':len,
-            'stroke-dashoffset':len,
-        });
-        setTimeout(function(){
-            obj.animate(speed).attr({'stroke-dashoffset':0,});
-        },delay);
+        
+        if(typeof jQuery === 'undefined'){
+            obj.attr({
+                'stroke-dasharray':len,
+                'stroke-dashoffset':len,
+            });
+            setTimeout(function(){
+                obj.animate(speed).attr({'stroke-dashoffset':0,});
+            },delay);
+        }
+        else
+        {
+            jQuery(obj.node).css({
+                'stroke-dasharray':len,
+                'stroke-dashoffset':len,
+                'transition':'stroke-dashoffset ' + (speed/1000) + 's ease-in-out'
+            })
+            jQuery('document').ready(function(){  
+                setTimeout(function(){
+                    jQuery(obj.node).css({'stroke-dashoffset':0});
+                },delay);
+            });
+        }
+        
     }
 })
