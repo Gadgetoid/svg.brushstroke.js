@@ -1,7 +1,6 @@
-// svg.brushstroke.js 0.2 - Copyright (c) 2013 Philip Howard - Licensed under the MIT license
+// svg.brushstroke.js 0.3 - Copyright (c) 2013 Philip Howard - Licensed under the MIT license
 SVG.extend(SVG.Shape, {
-    brushStroke: function(delay,speed){
-        function getLength( obj ){
+    bs_getTotalLength: function( obj ){
             switch( obj.type ){
                 case 'path':
                     return obj.node.getTotalLength();
@@ -31,30 +30,37 @@ SVG.extend(SVG.Shape, {
                 default:
                     return -1;
             } 
-        }
-        var obj=this,len = getLength(obj);
+        },
+    brushStroke: function(delay,speed,reverse){
+    
+        var obj=this,len = this.bs_getTotalLength(obj);
         if(len==-1) return;
         if(typeof speed === 'undefined') speed = len;
+        if(typeof reverse === 'undefined') reverse = false;
+        
         
         if(typeof jQuery === 'undefined'){
             obj.attr({
                 'stroke-dasharray':len,
-                'stroke-dashoffset':len,
+                'stroke-dashoffset':reverse ? 0:len,
             });
             setTimeout(function(){
-                obj.animate(speed).attr({'stroke-dashoffset':0,});
+                obj.animate(speed).attr({'stroke-dashoffset':reverse ? len:0,});
             },delay);
         }
         else
         {
             jQuery(obj.node).css({
+                'transition':'stroke-dashoffset 0s ease-in-out',
                 'stroke-dasharray':len,
-                'stroke-dashoffset':len,
-                'transition':'stroke-dashoffset ' + (speed/1000) + 's ease-in-out'
-            })
+                'stroke-dashoffset':(reverse)?0:len,
+            });
+            
             jQuery('document').ready(function(){  
                 setTimeout(function(){
-                    jQuery(obj.node).css({'stroke-dashoffset':0});
+                    jQuery(obj.node)
+                        .css({'transition':'stroke-dashoffset ' + (speed/1000) + 's ease-in-out' })
+                        .css({'stroke-dashoffset':(reverse)?len:0});
                 },delay);
             });
         }
